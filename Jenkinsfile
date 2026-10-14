@@ -33,8 +33,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'minikube-kubeconfig',
                                       variable: 'KUBECONFIG')]) {
                     sh '''
-                      sed "s|myapp:latest|myapp:$TAG|; s|DOCKERHUB_USER/myapp|$IMAGE|" K8s/deployment.yaml | kubectl apply -f -
-                      kubectl apply -f K8s/service.yaml
+                      sed "s|myapp:latest|myapp:$TAG|; s|DOCKERHUB_USER/myapp|$IMAGE|" k8s/deployment.yaml | kubectl apply -f -
+                      kubectl apply -f k8s/service.yaml
                       kubectl rollout status deployment/myapp
                     '''
                 }
